@@ -1,13 +1,6 @@
-/*global brackets,define*/
+/*global define*/
 
-define(function (require, exports, module) {
+define(function (require) {
     "use strict";
-
-    var ExtensionUtils  = brackets.getModule("utils/ExtensionUtils"),
-        modulePath      = ExtensionUtils.getModulePath(module);
-
-    require([modulePath + "dist/main.js"], function (main) {
-        main.initExtension();
-    });
-
+    require("dist/main")();
 });
