@@ -1,0 +1,20 @@
+{
+  "name": "zaggino.brackets-es6-extension",
+  "version": "0.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Martin Zagora <zaggino@gmail.com>",
+  "license": "MIT",
+  "engines": {
+    "brackets": ">=0.44.0"
+  },
+  "devDependencies": {
+    "grunt": "latest",
+    "grunt-6to5": "latest",
+    "grunt-contrib-watch": "latest",
+    "load-grunt-tasks": "latest"
+  }
+}
