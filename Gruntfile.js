@@ -7,8 +7,21 @@ module.exports = function (grunt) {
         watch: {
             js: {
                 files: ["src/**/*.{jsx,js}"],
-                tasks: ["6to5"]
+                tasks: ["build"]
             }
+        },
+        copy: {
+            browserpolyfill: {
+                files: [
+                    {
+                        expand: false,
+                        flatten: true,
+                        src: "node_modules/6to5/browser-polyfill.js",
+                        dest: "dist/browser-polyfill.js",
+                        filter: "isFile"
+                    },
+                ],
+            },
         },
         "6to5": {
             options: {
@@ -27,5 +40,6 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.registerTask("default", ["6to5", "watch"]);
+    grunt.registerTask("build", ["copy:browserpolyfill", "6to5"]);
+    grunt.registerTask("default", ["build", "watch"]);
 };

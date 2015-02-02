@@ -12,8 +12,10 @@
     "brackets": ">=0.44.0"
   },
   "devDependencies": {
+    "6to5": "latest",
     "grunt": "latest",
     "grunt-6to5": "latest",
+    "grunt-contrib-copy": "latest",
     "grunt-contrib-watch": "latest",
     "load-grunt-tasks": "latest"
   }
