@@ -12,7 +12,7 @@ module.exports = function (grunt) {
         },
         "6to5": {
             options: {
-                sourceMap: true,
+                sourceMap: "inline",
                 modules: "amd"
             },
             dist: {
