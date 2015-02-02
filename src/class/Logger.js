@@ -8,6 +8,10 @@ class Logger {
         console.log(str);
     }
 
+    error(str) {
+        console.error(str);
+    }
+
 }
 
 export default new Logger();
