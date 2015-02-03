@@ -6,7 +6,7 @@ module.exports = function (grunt) {
     grunt.initConfig({
         watch: {
             js: {
-                files: ["src/**/*.{jsx,js}"],
+                files: ["src/**/*.{jsx,es6}"],
                 tasks: ["build"]
             }
         },
@@ -33,8 +33,9 @@ module.exports = function (grunt) {
                 files: [{
                     expand: true,
                     cwd   : "src/",
+                    src   : [ "**/*.{jsx,es6}" ],
                     dest  : "dist/",
-                    src   : [ "**/*.{jsx,js}" ]
+                    ext   : ".js"
                 }]
             }
         }
