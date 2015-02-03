@@ -1,22 +1,50 @@
 {
-  "name": "zaggino.brackets-es6-extension",
-  "version": "0.0.0",
-  "description": "",
-  "main": "main.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Martin Zagora <zaggino@gmail.com>",
-  "license": "MIT",
-  "engines": {
-    "brackets": ">=0.44.0"
-  },
-  "devDependencies": {
-    "6to5": "latest",
-    "grunt": "latest",
-    "grunt-6to5": "latest",
-    "grunt-contrib-copy": "latest",
-    "grunt-contrib-watch": "latest",
-    "load-grunt-tasks": "latest"
-  }
+    "name": "zaggino.brackets-es6-extension",
+
+    "title": "Brackets ES6 extension base",
+    "description": "Sample extension base written in ES6",
+    "keywords": ["es6", "6to5"],
+    "version": "0.0.0",
+
+    "license": "MIT",
+    "homepage": "https://github.com/zaggino/brackets-es6-extension",
+    "author": {
+        "name": "Martin Zagora",
+        "email": "zaggino@gmail.com",
+        "url": "https://github.com/zaggino"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/zaggino/brackets-es6-extension.git"
+    },
+    "bugs": {
+        "url": "https://github.com/zaggino/brackets-es6-extension/issues",
+        "email": "zaggino@gmail.com"
+    },
+
+    "engines": {
+        "brackets": ">=0.44.0"
+    },
+    "scripts": {
+        "test": "grunt test"
+    },
+    "dependencies": {
+
+    },
+    "devDependencies": {
+        "6to5": "latest",
+        "grunt": "latest",
+        "grunt-6to5": "latest",
+        "grunt-contrib-copy": "latest",
+        "grunt-contrib-watch": "latest",
+        "load-grunt-tasks": "latest"
+    },
+
+    "i18n": ["en", "de"],
+    "package-i18n": {
+        "de": {
+            "description": "brackets-es6-extension",
+            "keywords": ["es6", "6to5"]
+        }
+    }
 }
