@@ -7,10 +7,11 @@ define(function (require, exports, module) {
         FileUtils       = brackets.getModule("file/FileUtils");
 
     var extensionInfo   = JSON.parse(require("text!package.json")),
-        // TODO: populate testSuites automatically from test/spec folder
         testSuites = [
+            //-build:from
             require("test/dist/Base-test"),
             require("test/dist/Logger-test")
+            //-build:to
         ];
 
     describe(extensionInfo.title, function () {
