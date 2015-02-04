@@ -8,11 +8,11 @@ module.exports = function (grunt) {
     grunt.initConfig({
         watch: {
             src: {
-                files: ["src/**/*.{jsx,es6}"],
+                files: ["Gruntfile.js", "src/**/*.{jsx,es6}"],
                 tasks: ["build:src"]
             },
             testSpec: {
-                files: ["test/spec/**/*.{jsx,es6}"],
+                files: ["Gruntfile.js", "test/spec/**/*.{jsx,es6}"],
                 tasks: ["build:testSpec"]
             }
         },
@@ -28,6 +28,15 @@ module.exports = function (grunt) {
                     },
                 ],
             },
+        },
+        wrap: {
+            co: {
+                src: "node_modules/co/index.js",
+                dest: "src/thirdparty/co.es6",
+                options: {
+                    wrapper: ["// https://www.npmjs.com/package/co", "export default module.exports;\n"]
+                }
+            }
         },
         "6to5": {
             options: {
@@ -94,6 +103,6 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.registerTask("build", ["copy:browserpolyfill", "6to5", "string-replace"]);
+    grunt.registerTask("build", ["wrap", "copy", "6to5", "string-replace"]);
     grunt.registerTask("default", ["build", "watch"]);
 };

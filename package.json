@@ -29,7 +29,7 @@
         "test": "grunt test"
     },
     "dependencies": {
-
+        "co": "4.x"
     },
     "devDependencies": {
         "6to5": "latest",
@@ -38,6 +38,7 @@
         "grunt-contrib-copy": "latest",
         "grunt-contrib-watch": "latest",
         "grunt-string-replace": "latest",
+        "grunt-wrap": "latest",
         "load-grunt-tasks": "latest"
     },
 
