@@ -36,6 +36,7 @@
         "grunt": "latest",
         "grunt-6to5": "latest",
         "grunt-contrib-copy": "latest",
+        "grunt-contrib-jshint": "latest",
         "grunt-contrib-watch": "latest",
         "grunt-string-replace": "latest",
         "grunt-wrap": "latest",

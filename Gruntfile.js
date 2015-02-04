@@ -7,13 +7,14 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
         watch: {
-            src: {
-                files: ["Gruntfile.js", "src/**/*.{jsx,es6}"],
-                tasks: ["build:src"]
-            },
-            testSpec: {
-                files: ["Gruntfile.js", "test/spec/**/*.{jsx,es6}"],
-                tasks: ["build:testSpec"]
+            files: ["Gruntfile.js", "src/**/*.{jsx,es6}", "test/spec/**/*.{jsx,es6}"],
+            tasks: ["build"]
+        },
+        jshint: {
+            files: ["Gruntfile.js", "src/**/*.{js,jsx,es6}", "test/spec/**/*.{js,jsx,es6}"],
+            options: {
+                jshintrc: true,
+                ignores: ["src/thirdparty/**/*.{js,jsx,es6}"]
             }
         },
         copy: {
@@ -40,7 +41,7 @@ module.exports = function (grunt) {
         },
         "6to5": {
             options: {
-                sourceMap: "inline",
+                sourceMap: true,
                 modules: "amd"
             },
             src: {
@@ -103,5 +104,7 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask("build", ["wrap", "copy", "6to5", "string-replace"]);
+    grunt.registerTask("test", ["jshint"]);
     grunt.registerTask("default", ["build", "watch"]);
+
 };
