@@ -41,8 +41,7 @@ module.exports = function (grunt) {
         "6to5": {
             options: {
                 sourceMap: "inline",
-                modules: "amd",
-                experimental: true
+                modules: "amd"
             },
             src: {
                 files: [{

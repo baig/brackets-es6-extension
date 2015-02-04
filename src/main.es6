@@ -8,20 +8,11 @@ var initExtension = () => {
 var SUCCESS = Symbol();
 
 function promiseResponse() {
-    return new Promise(function(resolve, reject) {
+    return new Promise(function(resolve) {
         setTimeout(function () {
             resolve(SUCCESS);
         }, 1);
     });
-}
-
-async function tryAsync() {
-    var response = await promiseResponse();
-    if (response === SUCCESS) {
-        Logger.log("ES7 async works!");
-    } else {
-        Logger.error("ES7 async failed...");
-    }
 }
 
 function* tryGenerators() {
@@ -35,6 +26,5 @@ function* tryGenerators() {
 
 export default () => {
     initExtension();
-    tryAsync();
     co(tryGenerators);
 };
