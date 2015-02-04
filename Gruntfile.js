@@ -5,9 +5,13 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
         watch: {
-            js: {
+            src: {
                 files: ["src/**/*.{jsx,es6}"],
-                tasks: ["build"]
+                tasks: ["build:src"]
+            },
+            testSpec: {
+                files: ["test/spec/**/*.{jsx,es6}"],
+                tasks: ["build:testSpec"]
             }
         },
         copy: {
@@ -29,12 +33,21 @@ module.exports = function (grunt) {
                 modules: "amd",
                 experimental: true
             },
-            dist: {
+            src: {
                 files: [{
                     expand: true,
                     cwd   : "src/",
                     src   : [ "**/*.{jsx,es6}" ],
                     dest  : "dist/",
+                    ext   : ".js"
+                }]
+            },
+            testSpec: {
+                files: [{
+                    expand: true,
+                    cwd   : "test/spec/",
+                    src   : [ "**/*.{jsx,es6}" ],
+                    dest  : "test/dist/",
                     ext   : ".js"
                 }]
             }

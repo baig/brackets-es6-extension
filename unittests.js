@@ -9,7 +9,8 @@ define(function (require, exports, module) {
     var extensionInfo   = JSON.parse(require("text!package.json")),
         // TODO: populate testSuites automatically from test/spec folder
         testSuites = [
-            require("test/spec/Logger-test")
+            require("test/dist/Base-test"),
+            require("test/dist/Logger-test")
         ];
 
     describe(extensionInfo.title, function () {
@@ -37,10 +38,21 @@ define(function (require, exports, module) {
 
         });
 
+        function getTestWindow() {
+            return testWindow;
+        }
+
+        function getModule(moduleName) {
+            var path = moduleName.split("/"),
+                ret  = testWindow[extensionInfo.name];
+            while (path.length > 0) {
+                ret = ret[path.shift()];
+            }
+            return ret;
+        }
+
         testSuites.forEach(function (testSuite) {
-
-            testSuite(testWindow);
-
+            testSuite(getTestWindow, getModule);
         });
 
     });
