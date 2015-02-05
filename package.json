@@ -40,6 +40,7 @@
         "grunt-contrib-watch": "latest",
         "grunt-string-replace": "latest",
         "grunt-wrap": "latest",
+        "grunt-zip": "latest",
         "load-grunt-tasks": "latest"
     },
 

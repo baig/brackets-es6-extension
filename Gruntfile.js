@@ -6,6 +6,7 @@ module.exports = function (grunt) {
     require("load-grunt-tasks")(grunt);
 
     grunt.initConfig({
+        pkg: grunt.file.readJSON("package.json"),
         watch: {
             files: ["Gruntfile.js", "src/**/*.{jsx,es6}", "test/spec/**/*.{jsx,es6}"],
             tasks: ["build"]
@@ -100,11 +101,24 @@ module.exports = function (grunt) {
                     }]
                 }
             }
+        },
+        zip: {
+            main: {
+                dest: "<%= pkg.name %>.zip",
+                src: [
+                    "dist/**",
+                    "LICENSE",
+                    "*.js",
+                    "*.json",
+                    "*.md"
+                ]
+            }
         }
     });
 
-    grunt.registerTask("build", ["wrap", "copy", "6to5", "string-replace"]);
     grunt.registerTask("test", ["jshint"]);
+    grunt.registerTask("build", ["wrap", "copy", "6to5", "string-replace"]);
+    grunt.registerTask("package", ["test", "build", "zip"]);
     grunt.registerTask("default", ["build", "watch"]);
 
 };
