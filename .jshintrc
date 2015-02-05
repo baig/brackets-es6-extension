@@ -22,7 +22,7 @@
     "maxlen": 150,
     "maxparams": 5,
     "maxstatements": 50,
-    "newcap": true,
+    "newcap": false,
     "noarg": true,
     "nocomma": false,
     "noempty": true,
@@ -38,6 +38,7 @@
     "white": true,
     "globals": {
         "console": true,
-        "setTimeout": true
+        "setTimeout": true,
+        "Symbol": true
     }
 }
