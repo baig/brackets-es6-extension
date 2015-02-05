@@ -18,20 +18,14 @@ module.exports = function (grunt) {
                 ignores: ["src/thirdparty/**/*.{js,jsx,es6}"]
             }
         },
-        copy: {
-            browserpolyfill: {
-                files: [
-                    {
-                        expand: false,
-                        flatten: true,
-                        src: "node_modules/6to5/browser-polyfill.js",
-                        dest: "dist/browser-polyfill.js",
-                        filter: "isFile"
-                    },
-                ],
-            },
-        },
         wrap: {
+            browserpolyfill: {
+                src: "node_modules/6to5/browser-polyfill.js",
+                dest: "dist/browser-polyfill.js",
+                options: {
+                    wrapper: ["(function () { if (window.regeneratorRuntime) { return; }", "}());\n"]
+                }
+            },
             co: {
                 src: "node_modules/co/index.js",
                 dest: "src/thirdparty/co.es6",
@@ -117,8 +111,9 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask("test", ["jshint"]);
-    grunt.registerTask("build", ["wrap", "copy", "6to5", "string-replace"]);
-    grunt.registerTask("package", ["test", "build", "zip"]);
-    grunt.registerTask("default", ["build", "watch"]);
+    grunt.registerTask("prebuild", ["wrap"]);
+    grunt.registerTask("build", ["6to5", "string-replace"]);
+    grunt.registerTask("package", ["test", "prebuild", "build", "zip"]);
+    grunt.registerTask("default", ["prebuild", "build", "watch"]);
 
 };

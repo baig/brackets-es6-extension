@@ -30,13 +30,14 @@
     "nonew": true,
     "notypeof": false,
     "quotmark": "double",
-    "shadow": "outer",
+    "shadow": false,
     "singleGroups": true,
     "trailing": true,
     "undef": true,
     "unused": true,
     "white": true,
     "globals": {
+        "brackets": true,
         "console": true,
         "setTimeout": true,
         "Symbol": true
