@@ -1,6 +1,7 @@
 /*global module,require*/
 
 var fs = require("fs");
+var glob = require("glob");
 
 module.exports = function (grunt) {
     require("load-grunt-tasks")(grunt);
@@ -16,6 +17,19 @@ module.exports = function (grunt) {
             options: {
                 jshintrc: true,
                 ignores: ["src/thirdparty/**/*.{js,jsx,es6}"]
+            }
+        },
+        lineending: {
+            dist: {
+                options: {
+                    eol: "lf",
+                    overwrite: true
+                },
+                files: {
+                    "": [
+                        "src/**/*.*"
+                    ]
+                }
             }
         },
         wrap: {
@@ -59,6 +73,41 @@ module.exports = function (grunt) {
             }
         },
         "string-replace": {
+            main: {
+                files: {
+                    "main.js": "main.js"
+                },
+                options: {
+                    replacements: [{
+                        pattern: /\/\/-build:from[\s\S]*\/\/-build:to/,
+                        replacement: function () {
+                            var lines = [];
+
+                            var files = glob.sync("dist/**/*.js")
+                                .map(function (file) {
+                                    file = file.replace(/\.js$/, "");
+
+                                    var key = file.match(/^dist\/(.*)$/)[1];
+                                    key = "testObj[\"" + key + "\"]";
+                                    return key + " = require(\"" + file + "\");";
+                                });
+
+                            lines = lines.concat(files);
+
+                            // build marks
+                            lines.unshift("//-build:from");
+                            lines.push("//-build:to");
+
+                            // indentation
+                            lines = lines.map(function (l, i) {
+                                return i !== 0 ? "        " + l : l;
+                            });
+
+                            return lines.join("\n");
+                        }
+                    }]
+                }
+            },
             unittests: {
                 files: {
                     "unittests.js": "unittests.js"
@@ -111,7 +160,7 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask("test", ["jshint"]);
-    grunt.registerTask("prebuild", ["wrap"]);
+    grunt.registerTask("prebuild", ["wrap", "lineending"]);
     grunt.registerTask("build", ["6to5", "string-replace"]);
     grunt.registerTask("package", ["test", "prebuild", "build", "zip"]);
     grunt.registerTask("default", ["prebuild", "build", "watch"]);

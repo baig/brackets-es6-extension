@@ -44,12 +44,7 @@ define(function (require, exports, module) {
         }
 
         function getModule(moduleName) {
-            var path = moduleName.split("/"),
-                ret  = testWindow[extensionInfo.name];
-            while (path.length > 0) {
-                ret = ret[path.shift()];
-            }
-            return ret;
+            return testWindow[extensionInfo.name][moduleName];
         }
 
         testSuites.forEach(function (testSuite) {

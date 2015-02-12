@@ -7,14 +7,16 @@ define(function (require) {
     require("dist/main")();
 
     if (window.isBracketsTestWindow) {
-        // TODO: this needs to be populated automatically somehow
         var extensionInfo = JSON.parse(require("text!package.json"));
-        window[extensionInfo.name] = {
-            main: require("dist/main"),
-            class: {
-                Logger: require("dist/class/Logger")
-            }
-        };
+        var testObj = window[extensionInfo.name] = {};
+        /*jshint sub:true*/
+        //-build:from
+        testObj["browser-polyfill"] = require("dist/browser-polyfill");
+        testObj["class/Logger"] = require("dist/class/Logger");
+        testObj["main"] = require("dist/main");
+        testObj["thirdparty/co"] = require("dist/thirdparty/co");
+        //-build:to
+        /*jshint sub:false*/
     }
 
 });

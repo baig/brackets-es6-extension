@@ -212,10 +212,14 @@ function isGenerator(obj) {
  * @return {Boolean}
  * @api private
  */
-
 function isGeneratorFunction(obj) {
   var constructor = obj.constructor;
-  return constructor && 'GeneratorFunction' == constructor.name;
+  var proto = constructor.prototype;
+  var name = constructor.displayName || constructor.name;
+  var nameLooksRight = 'GeneratorFunction' == name;
+  var methodsLooksRight = 'function' == typeof proto.next &&
+                          'function' == typeof proto.throw;
+  return nameLooksRight || methodsLooksRight;
 }
 
 /**

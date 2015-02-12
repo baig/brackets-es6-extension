@@ -33,11 +33,13 @@
     },
     "devDependencies": {
         "6to5": "latest",
+        "glob": "latest",
         "grunt": "latest",
         "grunt-6to5": "latest",
         "grunt-contrib-copy": "latest",
         "grunt-contrib-jshint": "latest",
         "grunt-contrib-watch": "latest",
+        "grunt-lineending": "latest",
         "grunt-string-replace": "latest",
         "grunt-wrap": "latest",
         "grunt-zip": "latest",
